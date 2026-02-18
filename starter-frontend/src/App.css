@@ -1,17 +1,55 @@
-.home-page {
-  text-align: center;
-
+.parent {
+    margin: 10px;
+    display: grid;
+    grid-template-columns: 1fr 7fr 3fr;
+    grid-template-rows: 1fr 2fr 13fr;
+    gap: 5px;
 }
 
-.hello-world-picture {
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
+.parent div.navigation { 
+    grid-area: 1 / 1 / 2 / 6; 
+}
+.parent div.title { grid-area: 2 / 1 / 3 / 4; }
+.parent div.menu { grid-area: 3 / 1 / 4 / 2; }
+.parent div.husky { grid-area: 3 / 3 / 4 / 4; }
+.parent div.content { grid-area: 3 / 2 / 4 / 3; }
+
+.navigation {
+    display: flex;
+    align-items: center;
+}
+.navigation div.buttons{
+    margin-left: auto;
+}
+.navigation div.buttons button {
+    background-color: white;
+    color: #8C5FCC;
+}
+#profile-button {
+    background-color: #8C5FCC;
+    color: white;
 }
 
-.message {
-  font-size: 1.5em;
-  max-width: 50%;
-  text-align: center;
-  margin: 20px auto;
+.title {
+    color: #8C5FCC;
+    margin-left: 20px;
+}
+
+.content {
+    background-color: #FFF1BA;
+}
+
+.husky {
+    border-style: solid;
+    border-color: #8C5FCC;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #8C5FCC;
+    color: white;
+    text-align: center;
 }
