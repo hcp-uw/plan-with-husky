@@ -7,29 +7,29 @@ export default function Home() {
 
   return (
     <>
-      <div class="parent">
-        <div class="navigation">
+      <div className="parent">
+        <div className="navigation">
           <div>Plan With Husky</div>
-          <div class="buttons">
+          <div className="buttons">
             <button>Home</button>
             <button>Notifications</button>
             <button>Settings</button>
             <button id="profile-button">Your Profile</button>
           </div>
         </div>
-        <div class="title">
+        <div className="title">
           <h1>Welcome back, {name}!</h1>
         </div>
-        <div class="menu">
+        <div className="menu">
           <div>todo</div>
           <div>calendar</div>
           <div>my husky</div>
           <div>shop</div>
         </div>
-        <div class="husky">
+        <div className="husky">
           <MyHusky />
         </div>
-        <div class="content">
+        <div className="content">
           <Task />
           <Task />
           <Task />
@@ -38,7 +38,7 @@ export default function Home() {
           <Task />
         </div>
       </div>
-      <div class="footer">footer</div>
+      <div className="footer">footer</div>
     </>
   );
 }
