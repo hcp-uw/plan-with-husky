@@ -1,9 +1,23 @@
+import { useState } from "react";
+
 import "./Home.css";
 import MyHusky from "../components/MyHusky";
 import Task from "../components/Task";
 
 export default function Home() {
-    let name = "John Doe";
+  let name = "John Doe";
+
+  const [tasks, setTasks] = useState([]);
+  const addTask = (props) => {
+    const newTask = {
+      desc: "Task",
+      date: "2/23",
+      categ: "Homework",
+      points: 5,
+    };
+
+    setTasks([...tasks, newTask]);
+  };
 
   return (
     <>
@@ -30,15 +44,22 @@ export default function Home() {
           <MyHusky />
         </div>
         <div className="content">
-          <Task />
-          <Task />
-          <Task />
-          <Task />
-          <Task />
-          <Task />
+          <div className="tasks">
+            {tasks.map((task, index) => (
+              <Task
+                key={index}
+                desc={task.desc}
+                date={task.date}
+                categ={task.categ}
+                points={task.points}
+              />
+            ))}
+          </div>
+          <button className="addButton" onClick={addTask}>
+            +
+          </button>
         </div>
       </div>
-      <div className="footer">footer</div>
     </>
   );
 }
