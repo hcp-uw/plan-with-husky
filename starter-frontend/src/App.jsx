@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import FeaturedImages from './components/FeaturedImages/FeaturedImages'
 import DrawingCanvas from './components/DrawingCanvas/DrawingCanvas'
+import EmailSignup from './components/EmailSignup/EmailSignup'
 import { getMessage } from './services/message';
 import './App.css'
 
@@ -36,6 +37,7 @@ const App = () => {
   // values that will not only be displayed, but also automatically re-rendered
   return (
     <div className='home-page'>
+      <EmailSignup />
       <FeaturedImages/>
       <p className='message'>{message}</p>
       <DrawingCanvas />
