@@ -8,6 +8,22 @@ export default function Login() {
 
     return (
         <>
+            <div className="login-page">
+                <div className="navigation">
+                    <div>Plan With Husky</div>
+                    <div className="buttons">
+                        <button>Home</button>
+                        <button>Notifications</button>
+                        <button>Settings</button>
+                        <button id="profile-button">Your Profile</button>
+                    </div>
+                </div>
+
+                <div className="title">
+                    <h1>Welcome to Login & Signup</h1>
+                </div>
+            </div>
+
             <div className="content login-content">
                 <div className="login-form">
                     <h2>Login</h2>
