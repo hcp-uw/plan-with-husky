@@ -10,15 +10,8 @@ export default function Home() {
 
   const [showTaskScreen, setShowTaskScreen] = useState(false);
   const [tasks, setTasks] = useState([]);
-  const addTask = (props) => {
-    const newTask = {
-      desc: "Task",
-      date: "2/23",
-      categ: "Homework",
-      points: 5,
-    };
-
-    setTasks([...tasks, newTask]);
+  const addTask = (newTask) => {
+    setTasks(tasks => [...tasks, newTask]);
   };
 
   return (
@@ -62,8 +55,8 @@ export default function Home() {
           </button>
           {showTaskScreen && (
             <TaskScreen 
-              onClose={() => {
-                addTask();
+              onClose={(newTask) => {
+                addTask(newTask);
                 setShowTaskScreen(false);
               }}
             />
