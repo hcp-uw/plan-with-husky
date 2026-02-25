@@ -3,11 +3,23 @@ import { useState } from "react";
 import "./Home.css";
 import MyHusky from "../../components/MyHusky";
 import TaskScreen from "../../components/TaskScreen";
+import Task from "../../components/Task"
 
 export default function Home() {
   let name = "John Doe";
 
-  const [showScreen, setShowScreen] = useState(false);
+  const [showTaskScreen, setShowTaskScreen] = useState(false);
+  const [tasks, setTasks] = useState([]);
+  const addTask = (props) => {
+    const newTask = {
+      desc: "Task",
+      date: "2/23",
+      categ: "Homework",
+      points: 5,
+    };
+
+    setTasks([...tasks, newTask]);
+  };
 
   return (
     <>
@@ -34,12 +46,26 @@ export default function Home() {
           <MyHusky />
         </div>
         <div className="content">
-          <button className="addButton" onClick={() => setShowScreen(true)}>
+          <div className="tasks">
+            {tasks.map((task, index) => (
+              <Task
+                key={index}
+                desc={task.desc}
+                date={task.date}
+                categ={task.categ}
+                points={task.points}
+              />
+            ))}
+          </div>
+          <button className="addButton" onClick={() => setShowTaskScreen(true)}>
             +
           </button>
-          {showScreen && (
+          {showTaskScreen && (
             <TaskScreen 
-              onClose={() => setShowScreen(false)}
+              onClose={() => {
+                addTask();
+                setShowTaskScreen(false);
+              }}
             />
           )}
         </div>
