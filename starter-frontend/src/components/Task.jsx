@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./Task.module.css";
 
 // A singular task.
-const Task = (props) => {
+export default function Task(props) {
   const [desc, setDesc] = useState(props.desc);
   const [date, setDate] = useState(props.date);
   const [categ, setCateg] = useState(props.categ);
