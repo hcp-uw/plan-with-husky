@@ -1,0 +1,25 @@
+.email-signup-container {
+  max-width: 500px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.email-signup-form {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.email-signup-form input {
+  width: 260px;
+  padding: 8px;
+}
+
+.email-signup-form button {
+  padding: 8px 12px;
+  color: #ffffff;
+}
+
+.signup-status {
+  margin-top: 10px;
+}
