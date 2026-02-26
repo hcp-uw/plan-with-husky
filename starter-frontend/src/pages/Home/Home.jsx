@@ -1,22 +1,17 @@
 import { useState } from "react";
 
 import "./Home.css";
-import MyHusky from "../components/MyHusky";
-import Task from "../components/Task";
+import MyHusky from "../../components/MyHusky";
+import TaskScreen from "../../components/TaskScreen";
+import Task from "../../components/Task"
 
 export default function Home() {
   let name = "John Doe";
 
+  const [showTaskScreen, setShowTaskScreen] = useState(false);
   const [tasks, setTasks] = useState([]);
-  const addTask = (props) => {
-    const newTask = {
-      desc: "Task",
-      date: "2/23",
-      categ: "Homework",
-      points: 5,
-    };
-
-    setTasks([...tasks, newTask]);
+  const addTask = (newTask) => {
+    setTasks(tasks => [...tasks, newTask]);
   };
 
   return (
@@ -55,9 +50,17 @@ export default function Home() {
               />
             ))}
           </div>
-          <button className="addButton" onClick={addTask}>
+          <button className="addButton" onClick={() => setShowTaskScreen(true)}>
             +
           </button>
+          {showTaskScreen && (
+            <TaskScreen 
+              onClose={(newTask) => {
+                addTask(newTask);
+                setShowTaskScreen(false);
+              }}
+            />
+          )}
         </div>
       </div>
     </>

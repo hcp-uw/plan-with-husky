@@ -1,0 +1,50 @@
+.huskySprite {
+    display: block;
+    margin: 0 auto;
+}
+.cog {
+    max-width: 20px;
+    height: auto;
+    float: right;
+    margin: auto 0;
+}
+.container {
+    margin: 10px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 3px 3px #75757578;
+    padding: 15px;
+}
+.nameContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    background-color: #E4D8FB;
+    border-radius: 10px;
+    box-shadow: 0px 3px 3px #75757578;
+    padding: 10px 15px;
+}
+.barContainer {
+    display: flex;
+    margin: 10px;
+    background-color: #FFF1BA;
+    border-radius: 10px;
+    box-shadow: 0px 3px 3px #75757578;
+    padding: 10px 15px;
+    align-items: center;
+}
+.barOuter {
+    background-color: #E4D8FB;
+    border-radius: 20px;
+    box-shadow: 0px 3px 3px #75757578;
+    padding: 5px;
+    box-sizing: border-box;
+    width: 75%;
+    margin-left: auto;
+}
+.statusBar {
+    background-color: #8C5FCC;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 10px;
+}

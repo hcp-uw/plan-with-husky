@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Task.css";
+import styles from "./Task.module.css";
 
 // A singular task.
 export default function Task(props) {
@@ -10,8 +10,8 @@ export default function Task(props) {
 
   return (
     <>
-      <div className="container">
-        <div className="check">
+      <div className={styles.container}>
+        <div className={styles.check}>
           <input
             type="checkbox"
             name="option_name"
@@ -19,10 +19,11 @@ export default function Task(props) {
           ></input>
         </div>
         <div>{desc}</div>
-        <div className="right">{categ}</div>
+        <div className={styles.right}>{categ}</div>
         <div>{date}</div>
         <div>{points}</div>
       </div>
     </>
   );
 };
+

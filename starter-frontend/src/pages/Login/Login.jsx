@@ -1,5 +1,5 @@
 import { useState } from "react";
-import EmailSignup from "../components/EmailSignup/EmailSignup";
+import EmailSignup from "../../components/EmailSignup/EmailSignup";
 import "./Login.css";
 
 export default function Login() {
