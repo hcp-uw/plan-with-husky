@@ -1,12 +1,11 @@
-import "../Home/Home.css";
 import SideBar from "../../components/SideBar/SideBar";
+import NavigationBar from "../../components/NavigationBar/NavigationBar";
 
 export default function Calendar () {
     return (
         <>
-            <div className="menu">
-                <SideBar />
-            </div>
+            <NavigationBar />
+            <SideBar />
             <p>Yippe!! Here is calendar text.</p>
         </>
     );
