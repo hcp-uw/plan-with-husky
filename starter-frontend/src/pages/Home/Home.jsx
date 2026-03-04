@@ -4,6 +4,7 @@ import "./Home.css";
 import MyHusky from "../../components/MyHusky";
 import TaskScreen from "../../components/TaskScreen";
 import Task from "../../components/Task"
+import SideBar from "../../components/SideBar/SideBar";
 
 export default function Home() {
   let name = "John Doe";
@@ -30,10 +31,7 @@ export default function Home() {
           <h1>Welcome back, {name}!</h1>
         </div>
         <div className="menu">
-          <div>todo</div>
-          <div>calendar</div>
-          <div>my husky</div>
-          <div>shop</div>
+          <SideBar />
         </div>
         <div className="husky">
           <MyHusky />
