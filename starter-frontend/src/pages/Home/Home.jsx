@@ -45,10 +45,13 @@ export default function Home() {
           </button>
           {showTaskScreen && (
             <TaskScreen 
-              onClose={(newTask) => {
+              onAddTask={(newTask) => {
                 addTask(newTask);
                 setShowTaskScreen(false);
               }}
+              onClose={() => 
+                setShowTaskScreen(false)
+              }
             />
           )}
         </div>
