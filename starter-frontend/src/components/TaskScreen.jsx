@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./TaskScreen.css";
 import Task from "./Task"
 
-export default function TaskScreen ({ onClose }) {
+export default function TaskScreen ({ onAddTask, onClose }) {
     const [desc, setDesc] = useState("");
     const [date, setDate] = useState("");
     const [categ, setCateg] = useState("");
@@ -12,6 +12,9 @@ export default function TaskScreen ({ onClose }) {
         <>
             <div className="screen-overlay">
                 <div className="screen-content">
+                    <button className="close-button" onClick={onClose}>
+                        X
+                    </button>
                     <h2>Task Screen</h2>
                     <div className="task-information">
                         <input placeholder="Task name" 
@@ -31,7 +34,7 @@ export default function TaskScreen ({ onClose }) {
                             onChange={(event) => setPoints(event.target.value)}
                         />
                     </div>
-                    <button onClick={() => onClose({ desc, date, categ, points})} style={{color: "white"}}>Add task</button>
+                    <button onClick={() => onAddTask({ desc, date, categ, points})} style={{color: "white"}}>Add task</button>
                 </div>
             </div>
         </>

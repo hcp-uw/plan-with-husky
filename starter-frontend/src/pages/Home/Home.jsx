@@ -1,6 +1,9 @@
 import { useState } from "react";
 
 import "./Home.css";
+
+import NavigationBar from "../../components/NavigationBar/NavigationBar";
+import SideBar from "../../components/SideBar/SideBar";
 import MyHusky from "../../components/MyHusky";
 import TaskScreen from "../../components/TaskScreen";
 import Task from "../../components/Task"
@@ -17,24 +20,11 @@ export default function Home() {
   return (
     <>
       <div className="parent">
-        <div className="navigation">
-          <div>Plan With Husky</div>
-          <div className="buttons">
-            <button>Home</button>
-            <button>Notifications</button>
-            <button>Settings</button>
-            <button id="profile-button">Your Profile</button>
-          </div>
-        </div>
+        <NavigationBar />
         <div className="title">
           <h1>Welcome back, {name}!</h1>
         </div>
-        <div className="menu">
-          <div>todo</div>
-          <div>calendar</div>
-          <div>my husky</div>
-          <div>shop</div>
-        </div>
+        <SideBar />
         <div className="husky">
           <MyHusky />
         </div>
@@ -55,10 +45,13 @@ export default function Home() {
           </button>
           {showTaskScreen && (
             <TaskScreen 
-              onClose={(newTask) => {
+              onAddTask={(newTask) => {
                 addTask(newTask);
                 setShowTaskScreen(false);
               }}
+              onClose={() => 
+                setShowTaskScreen(false)
+              }
             />
           )}
         </div>
