@@ -24,7 +24,8 @@ export default function Shop() {
         </div>
         <div className="content">
             <div className={styles.shop}>
-                <ShopItem />
+                <ShopItem 
+                    price={5}/>
                 <ShopItem />
                 <ShopItem />
                 <ShopItem />

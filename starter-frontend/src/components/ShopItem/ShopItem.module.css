@@ -10,6 +10,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: scale(1.05);
 }
 
 .image {
@@ -21,4 +26,11 @@
     color: white;
     margin-top: 10px;
     box-shadow: 0px 1px 1px #75757578;
+    display: flex;
+    justify-content: center;
+}
+
+.coin {
+    width: 20%;
+    margin-right: 5px;
 }
