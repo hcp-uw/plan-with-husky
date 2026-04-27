@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 import "./WeeklyView.css";
+
+import EventAdder from "./EventAdder";
 
 export default function WeeklyViewHeader () {
     const today = new Date();
@@ -6,9 +10,23 @@ export default function WeeklyViewHeader () {
         weekday: "long",
     });
 
+    const [showEventScreen, setShowEventScreen] = useState(false);
+
+
+
     return (
         <div>
-            <p>Today's date: {today.toLocaleDateString()}, {weekday}</p>
+            <div className="topRow"> 
+                <p>Today's date: {today.toLocaleDateString()}, {weekday}</p>
+                <button className="addEventButton" onClick={() => setShowEventScreen(true)}>+ New Event</button>
+                {showEventScreen && (
+                    <EventAdder 
+                        onClose={() => 
+                            setShowEventScreen(false)
+                        }
+                    />
+                )}
+            </div>
             <div className="week">
                 <div className="headerDays">S</div>
                 <div className="headerDays">M</div>
