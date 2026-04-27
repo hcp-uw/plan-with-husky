@@ -13,8 +13,16 @@ export default function SideBar () {
                     calendar
                 </button>
             </div>
-            <div>my husky</div>
-            <div>shop</div>
+            <div>
+                <button onClick={() => navigate("/myhusky")}>
+                    my husky
+                </button>
+            </div>
+            <div>
+                <button onClick={() => navigate("/shop")}>
+                    shop
+                </button>
+            </div>
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import husky from "../assets/husky.png";
 import styles from "./MyHusky.module.css";
 import cog from "../assets/settings cog.png";
@@ -35,6 +35,17 @@ const MyHusky = () => {
   const [mood, setMood] = useState(100);
   const [hunger, setHunger] = useState(75);
   const [energy, setEnergy] = useState(25);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMood((prev) => Math.max(prev - 1, 0));
+      setHunger((prev) => Math.max(prev - 1, 0));
+      setEnergy((prev) => Math.max(prev - 1, 0));
+    }, 1000);
+
+    return () => clearInterval(interval); // cleanup
+  }, []);
+
   return (
     <>
       <div className={styles.container}>
