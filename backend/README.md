@@ -5,7 +5,7 @@ A Spring Boot-based task management application with user authentication.
 ## Project Structure
 
 ```
-starter-backend/
+backend/
 ├── src/
 │   ├── main/
 │   │   ├── java/com/taskmanager/
@@ -86,7 +86,7 @@ Response (200 OK):
 
 1. Navigate to the backend directory:
 ```bash
-cd starter-backend
+cd backend
 ```
 
 2. Build the project:

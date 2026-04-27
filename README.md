@@ -1,10 +1,22 @@
-# Node.js (React, Express) Project Starter ✅
+# Plan With Husky
 
-A simple template repository with a React frontend and Express backend for quickly starting new full-stack projects.
+A gamified planner complete with a to-do list, calendar, and husky interaction system.
 
-## Prerequisites ‼️
+## Features
 
-To use this template, you need to have the following installed on your machine:
+- Email signup and login
+- To-do list with categories, descriptions, and points
+- Calendar with weekly and monthly view
+- Husky interaction and care system
+- Husky cosmetics
+
+## Installation
+
+1. Clone the repo:
+    git clone https://github.com/hcp-uw/plan-with-husky
+
+2. Install dependencies:
+
 
 - Node.js 
 - npm 
@@ -25,9 +37,9 @@ git clone <your-repo-url>
 
 ```bash
 cd <your-repo-name>
-cd starter-frontend
+cd frontend
 npm i
-cd ../starter-backend
+cd ../backend
 npm i
 ```
 
@@ -38,13 +50,13 @@ To start the development environment, follow these steps:
 1. Start your server (from the root of the project):
 
 ```bash
-cd starter-backend
+cd backend
 npm start
 ```
 
 2. In a new terminal window (starting from the root of your project):
 ```bash
-cd starter-frontend
+cd frontend
 npm start
 ```
 
