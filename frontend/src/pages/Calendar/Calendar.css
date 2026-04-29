@@ -1,0 +1,42 @@
+.calendar-wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+    height: 480px;
+    padding-right: 10px;
+    overflow-y: auto;
+}
+
+.row {
+    display: flex;
+}
+
+.time {
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell {
+    flex: 1;
+    height: 40px;
+    border: 1px solid rgba(0,0,0,0.3);
+}
+
+.calendar::-webkit-scrollbar {
+    width: 10px;
+}
+
+.calendar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.calendar::-webkit-scrollbar-thumb {
+    background: #8C5FCC;
+    border-radius: 999px;
+}

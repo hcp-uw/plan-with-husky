@@ -1,0 +1,27 @@
+.topRow {
+    display: flex;
+    gap: 8px;
+}
+
+.addEventButton {
+    padding: 0px 18px;
+    background-color: #8C5FCC;
+}
+
+.week {
+    display: flex;
+}
+
+.day {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerDays {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -7,7 +7,11 @@ export default function SideBar () {
 
     return (
         <div className="menu">
-            <div>todo</div>
+            <div>
+                <button onClick={() => navigate("/home")}>
+                    todo
+                </button>
+            </div>
             <div>
                 <button onClick={() => navigate("/calendar")}>
                     calendar
