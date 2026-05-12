@@ -8,6 +8,8 @@ import SideBar from "../../components/SideBar/SideBar";
 import MyHusky from "../../components/MyHusky";
 import TaskScreen from "../../components/TaskScreen";
 import Task from "../../components/Task";
+import huskySprite from "../../assets/husky.png"
+import InventoryItem from "../../components/InventoryItem/InventoryItem"
 
 export default function Husky() {
   let name = "John Doe";
@@ -20,7 +22,25 @@ export default function Husky() {
           <h1>Welcome back, {name}!</h1>
         </div>
         <SideBar />
-        <div style={{ gridColumn: "span 2" }} className="content"></div>
+        <div className="husky">
+          <div className={styles.inventory}>
+            <InventoryItem />
+            <InventoryItem />
+            <InventoryItem />
+            <InventoryItem />
+            <InventoryItem />
+            <InventoryItem />
+            <InventoryItem />
+            <InventoryItem />
+            <InventoryItem />
+          </div>
+          <MyHusky isHuskyPage={true}/>
+        </div>
+        <div className="content">
+          <div className={styles.environment}>
+            <img src={huskySprite} className={styles.huskySprite}></img>
+          </div>
+        </div>
       </div>
     </>
   );

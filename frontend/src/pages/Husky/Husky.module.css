@@ -1,0 +1,29 @@
+.huskySprite {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%
+}
+
+.environment {
+    margin: 20px;
+    background-color: red;
+    flex: 1;
+}
+
+.inventory {
+    background-color: #E4D8FB;
+    margin-bottom: 15px;
+    margin-inline: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 3px 3px #75757578;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 16px;
+    padding: 16px;
+    height: 35vh;
+    overflow-y: auto;
+    align-content: start;
+}

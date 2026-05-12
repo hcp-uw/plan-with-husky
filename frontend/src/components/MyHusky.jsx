@@ -3,6 +3,8 @@ import husky from "../assets/husky.png";
 import styles from "./MyHusky.module.css";
 import cog from "../assets/settings cog.png";
 
+import { huskyService } from "../services/huskyService";
+
 function StatusBar({ type, value }) {
   return (
     <>
@@ -31,7 +33,7 @@ function NameBar() {
   );
 }
 
-const MyHusky = () => {
+const MyHusky = ({isHuskyPage}) => {
   const [mood, setMood] = useState(100);
   const [hunger, setHunger] = useState(75);
   const [energy, setEnergy] = useState(25);
@@ -49,7 +51,7 @@ const MyHusky = () => {
   return (
     <>
       <div className={styles.container}>
-        <img className={styles.huskySprite} src={husky}></img>
+        {!isHuskyPage && (<img className={styles.huskySprite} src={husky}></img>)}
         <NameBar />
         <StatusBar type={"Mood"} value={mood} />
         <StatusBar type={"Hunger"} value={hunger} />
