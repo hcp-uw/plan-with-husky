@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./Home.css";
 
@@ -8,13 +8,29 @@ import MyHusky from "../../components/MyHusky";
 import TaskScreen from "../../components/TaskScreen";
 import Task from "../../components/Task"
 
+import { taskService } from "../../services/taskService";
+// OH MY GODDDDDD BRO
+
 export default function Home() {
   let name = "John Doe";
 
   const [showTaskScreen, setShowTaskScreen] = useState(false);
   const [tasks, setTasks] = useState([]);
-  const addTask = (newTask) => {
-    setTasks(tasks => [...tasks, newTask]);
+
+  useEffect(() => {
+    const loadTasks = async () => {
+      const data = await taskService.getTasks();
+      setTasks(data);
+    };
+
+    loadTasks();
+  }, []);
+
+  const addTask = async (newTask) => {
+    await taskService.createTask(newTask);
+
+    const updated = await taskService.getTasks();
+    setTasks(updated);
   };
 
   return (
@@ -30,9 +46,9 @@ export default function Home() {
         </div>
         <div className="content">
           <div className="tasks">
-            {tasks.map((task, index) => (
+            {tasks.map((task) => (
               <Task
-                key={index}
+                key={task.id}
                 desc={task.desc}
                 date={task.date}
                 categ={task.categ}
@@ -45,8 +61,8 @@ export default function Home() {
           </button>
           {showTaskScreen && (
             <TaskScreen 
-              onAddTask={(newTask) => {
-                addTask(newTask);
+              onAddTask={async (newTask) => {
+                await addTask(newTask);
                 setShowTaskScreen(false);
               }}
               onClose={() => 

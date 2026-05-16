@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import husky from "../assets/husky.png";
 import styles from "./MyHusky.module.css";
 import cog from "../assets/settings cog.png";
+import HuskyPet from "./HuskyPet/HuskyPet"
+import coin from "../assets/pwh_coin.png";
 
 import { huskyService } from "../services/huskyService";
 
@@ -33,26 +35,57 @@ function NameBar() {
   );
 }
 
+function Balance() {
+  return (
+    <div className={styles.balanceContainer}>
+      <img src={coin} className={styles.coin}></img>
+      <div>
+        100
+      </div>
+    </div>
+  );
+}
+
 const MyHusky = ({isHuskyPage}) => {
-  const [mood, setMood] = useState(100);
-  const [hunger, setHunger] = useState(75);
-  const [energy, setEnergy] = useState(25);
+  const [mood, setMood] = useState(50);
+  const [hunger, setHunger] = useState(50);
+  const [energy, setEnergy] = useState(50);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setMood((prev) => Math.max(prev - 1, 0));
-      setHunger((prev) => Math.max(prev - 1, 0));
-      setEnergy((prev) => Math.max(prev - 1, 0));
+    const loadStats = async () => {
+      const data = await huskyService.getStats();
+      setMood(data.mood);
+      setHunger(data.hunger);
+      setEnergy(data.energy);
+    };
+
+    loadStats();
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      await huskyService.decay();
+      const updated = await huskyService.getStats();
+      setMood(updated.mood);
+      setHunger(updated.hunger);
+      setEnergy(updated.energy);
     }, 1000);
 
-    return () => clearInterval(interval); // cleanup
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <>
       <div className={styles.container}>
-        {!isHuskyPage && (<img className={styles.huskySprite} src={husky}></img>)}
-        <NameBar />
+        {!isHuskyPage && (
+          <div className={styles.huskySprite}>
+            <HuskyPet />
+          </div>
+          )}
+        <div className={styles.help}>
+          <NameBar />
+          <Balance />
+        </div>
         <StatusBar type={"Mood"} value={mood} />
         <StatusBar type={"Hunger"} value={hunger} />
         <StatusBar type={"Energy"} value={energy} />

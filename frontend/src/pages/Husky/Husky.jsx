@@ -10,6 +10,7 @@ import TaskScreen from "../../components/TaskScreen";
 import Task from "../../components/Task";
 import huskySprite from "../../assets/husky.png"
 import InventoryItem from "../../components/InventoryItem/InventoryItem"
+import HuskyRoom from "../../components/HuskyRoom/HuskyRoom"
 
 export default function Husky() {
   let name = "John Doe";
@@ -29,16 +30,12 @@ export default function Husky() {
             <InventoryItem />
             <InventoryItem />
             <InventoryItem />
-            <InventoryItem />
-            <InventoryItem />
-            <InventoryItem />
-            <InventoryItem />
           </div>
           <MyHusky isHuskyPage={true}/>
         </div>
         <div className="content">
           <div className={styles.environment}>
-            <img src={huskySprite} className={styles.huskySprite}></img>
+            <HuskyRoom />
           </div>
         </div>
       </div>

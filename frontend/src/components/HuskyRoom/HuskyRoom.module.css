@@ -1,0 +1,81 @@
+.scene {
+    position: relative;
+
+    width: 100%;
+    max-width: 900px;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+.background-layer,
+.entity-layer,
+.ui-layer {
+    position: absolute;
+    inset: 0;
+}
+
+.background-layer {
+    z-index: 1;
+}
+
+.entity-layer {
+    z-index: 2;
+    pointer-events: none;
+}
+
+.ui-layer {
+    z-index: 3;
+}
+
+.wall {
+    height: 66.66%;
+    background-color: rgb(233, 216, 171);
+    /*background-image: url("/textures/wall.png");
+    background-repeat: repeat;
+    background-size: 256px;*/
+}
+
+.floor {
+    height: 33.33%;
+    background-image: url("https://cdn.architextures.org/textures/23/5/earth-tone-barcode-carpet-stack-mbn6wk-1200.jpg");
+    background-repeat: repeat;
+    background-size: 400px;
+
+    box-shadow: inset 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+.husky {
+    position: absolute;
+
+    width: 250px;
+
+    left: 51%;
+    bottom: 18%;
+
+    transform: translateX(-50%);
+}
+
+.play-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #E4D8FB;
+    box-shadow: 0px 3px 3px #75757578;
+}
+
+.feed-btn {
+    position: absolute;
+    top: 70px;
+    left: 20px;
+    background-color: #E4D8FB;
+    box-shadow: 0px 3px 3px #75757578;
+}
+
+.sleep-btn {
+    position: absolute;
+    top: 120px;
+    left: 20px;
+    background-color: #E4D8FB;
+    box-shadow: 0px 3px 3px #75757578;
+}

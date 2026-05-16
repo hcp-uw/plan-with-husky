@@ -17,16 +17,40 @@
     border-radius: 20px;
     box-shadow: 0px 3px 3px #75757578;
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.help {
+    margin: 10px;
 }
 
 .nameContainer {
     display: flex;
     justify-content: space-between;
-    margin: 10px;
     background-color: #E4D8FB;
     border-radius: 10px;
     box-shadow: 0px 3px 3px #75757578;
     padding: 10px 15px;
+    width: 60%;
+    float: left;
+}
+
+.balanceContainer {
+    display: flex;
+    background-color: #8C5FCC;
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0px 3px 3px #75757578;
+    padding: 15px 10px;
+    float: right;
+    color: white;
+}
+
+.coin {
+    width: 30px;
 }
 
 .barContainer {
