@@ -18,14 +18,58 @@
 .time {
     width: 50px;
     display: flex;
-    align-items: center;
+    position: relative;
+    top: -10px;
     justify-content: center;
+
+    font-size: 12px;
+    opacity: 0.75;
 }
 
 .cell {
     flex: 1;
     height: 40px;
-    border: 1px solid rgba(0,0,0,0.3);
+    border: 1px solid rgba(0,0,0,0.1);
+
+    position: relative;
+}
+
+.event-item {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+
+    left: 0;
+    right: 10px;
+
+    background-color: #E4D8FB;
+    border-radius: 6px;
+
+    padding: 4px;
+    box-sizing: border-box;
+
+    overflow: hidden;
+    z-index: 10;
+    line-height: 1.1;
+}
+
+.event-item p {
+    margin: 0;
+}
+
+.event-name {
+    font-size: 14px;
+    line-height: 1.1;
+}
+
+.event-time {
+    font-size: 12px;
+    font-weight: 100;
+    opacity: 0.75;
+    line-height: 1.1;
+    
 }
 
 .calendar::-webkit-scrollbar {

@@ -2,39 +2,30 @@ import { useState } from "react";
 
 import "./WeeklyView.css";
 
-import EventAdder from "./EventAdder";
-
-export default function WeeklyViewHeader () {
+export default function WeeklyViewHeader({ onAddClick }) {
     const today = new Date();
     const weekday = today.toLocaleDateString("en-US", {
         weekday: "long",
     });
 
-    const [showEventScreen, setShowEventScreen] = useState(false);
-
-
-
     return (
         <div>
             <div className="topRow"> 
-                <p>Today's date: {today.toLocaleDateString()}, {weekday}</p>
-                <button className="addEventButton" onClick={() => setShowEventScreen(true)}>+ New Event</button>
-                {showEventScreen && (
-                    <EventAdder 
-                        onClose={() => 
-                            setShowEventScreen(false)
-                        }
-                    />
-                )}
+                <p className="headerDate">Today's date: {today.toLocaleDateString()}, {weekday}</p>
+                <button className="addEventButton" onClick={onAddClick}>+ New Event</button>
             </div>
             <div className="week">
-                <div className="headerDays">S</div>
-                <div className="headerDays">M</div>
-                <div className="headerDays">T</div>
-                <div className="headerDays">W</div>
-                <div className="headerDays">T</div>
-                <div className="headerDays">F</div>
-                <div className="headerDays">S</div>
+                <div className="timeSpacer" />
+
+                <div className="headerDays">Sun</div>
+                <div className="headerDays">Mon</div>
+                <div className="headerDays">Tue</div>
+                <div className="headerDays">Wed</div>
+                <div className="headerDays">Thu</div>
+                <div className="headerDays">Fri</div>
+                <div className="headerDays">Sat</div>
+
+                <div className="scrollbarSpacer" />
             </div>
         </div>
     );

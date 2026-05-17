@@ -1,3 +1,7 @@
+.headerDate {
+    font-weight: bold;
+}
+
 .topRow {
     display: flex;
     gap: 8px;
@@ -6,6 +10,7 @@
 .addEventButton {
     padding: 0px 18px;
     background-color: #8C5FCC;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .week {
@@ -20,8 +25,18 @@
 }
 
 .headerDays {
+    padding-top: 10px;
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: bold;
+}
+
+.timeSpacer {
+    width: 50px;
+}
+
+.scrollbarSpacer {
+    width: 20px;
 }

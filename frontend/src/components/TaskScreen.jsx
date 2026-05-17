@@ -10,8 +10,8 @@ export default function TaskScreen ({ onAddTask, onClose }) {
 
     return (
         <>
-            <div className="screen-overlay">
-                <div className="screen-content">
+            <div className="screen-overlay" onClick={onClose}>
+                <div className="screen-content" onClick={(e) => e.stopPropagation()}>
                     <button className="close-button" onClick={onClose}>
                         X
                     </button>
