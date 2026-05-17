@@ -5,22 +5,19 @@ import styles from "./HuskyRoom.module.css";
 
 import { huskyService } from "../../services/huskyService";
 
-function playBtn() {
-  huskyService.addMood(10);
-  const updatedStats = huskyService.getStats();
-  setMood(updatedStats.mood);
+async function playBtn() {
+  await huskyService.addMood(10);
+  window.dispatchEvent(new CustomEvent("huskyUpdated"));
 }
 
-function feedBtn() {
-  huskyService.addHunger(10);
-  const updatedStats = huskyService.getStats();
-  setHunger(updatedStats.hunger);
+async function feedBtn() {
+  await huskyService.addHunger(10);
+  window.dispatchEvent(new CustomEvent("huskyUpdated"));
 }
 
-function sleepBtn() {
-  huskyService.addEnergy(10);
-  const updatedStats = huskyService.getStats();
-  setEnergy(updatedStats.energy);
+async function sleepBtn() {
+  await huskyService.addEnergy(10);
+  window.dispatchEvent(new CustomEvent("huskyUpdated"));
 }
 
 export default function HuskyRoom() {

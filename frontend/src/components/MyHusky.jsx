@@ -36,11 +36,24 @@ function NameBar() {
 }
 
 function Balance() {
+  console.log("Balance rendered");
+  const [balance, setBalance] = useState(0);
+
+  useEffect(() => {
+    console.log("Balance effect running");
+    const loadStats = async () => {
+      const data = await huskyService.getStats();
+      console.log("raw stats:", data);
+      setBalance(data.balance);
+    };
+    loadStats();
+  }, []);
+
   return (
     <div className={styles.balanceContainer}>
       <img src={coin} className={styles.coin}></img>
       <div>
-        100
+        {balance}
       </div>
     </div>
   );
@@ -60,18 +73,18 @@ const MyHusky = ({isHuskyPage}) => {
     };
 
     loadStats();
-  }, []);
 
-  useEffect(() => {
+    window.addEventListener("huskyUpdated", loadStats);
+
     const interval = setInterval(async () => {
       await huskyService.decay();
-      const updated = await huskyService.getStats();
-      setMood(updated.mood);
-      setHunger(updated.hunger);
-      setEnergy(updated.energy);
-    }, 1000);
+      await loadStats();
+    }, 3000);
 
-    return () => clearInterval(interval);
+    return () => {
+      window.removeEventListener("huskyUpdated", loadStats);
+      clearInterval(interval);
+    };
   }, []);
 
   return (
