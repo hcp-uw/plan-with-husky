@@ -6,17 +6,17 @@ import styles from "./HuskyRoom.module.css";
 import { huskyService } from "../../services/huskyService";
 
 async function playBtn() {
-  await huskyService.addMood(10);
+  await huskyService.addMood(20);
   window.dispatchEvent(new CustomEvent("huskyUpdated"));
 }
 
 async function feedBtn() {
-  await huskyService.addHunger(10);
+  await huskyService.addHunger(20);
   window.dispatchEvent(new CustomEvent("huskyUpdated"));
 }
 
 async function sleepBtn() {
-  await huskyService.addEnergy(10);
+  await huskyService.addEnergy(20);
   window.dispatchEvent(new CustomEvent("huskyUpdated"));
 }
 

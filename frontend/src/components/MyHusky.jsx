@@ -79,7 +79,7 @@ const MyHusky = ({isHuskyPage}) => {
     const interval = setInterval(async () => {
       await huskyService.decay();
       await loadStats();
-    }, 3000);
+    }, 2000);
 
     return () => {
       window.removeEventListener("huskyUpdated", loadStats);
