@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "../Home/Home.css";
 import styles from "./Husky.module.css";
@@ -12,8 +12,19 @@ import huskySprite from "../../assets/husky.png"
 import InventoryItem from "../../components/InventoryItem/InventoryItem"
 import HuskyRoom from "../../components/HuskyRoom/HuskyRoom"
 
+import { shopService } from "../../services/shopService"
+
 export default function Husky() {
   let name = "John Doe";
+  const [inventoryItems, setInventoryItems] = useState([]);
+  useEffect(() => {
+    const loadItems = async () => {
+      const data = await shopService.getInventory();
+      setInventoryItems(data);
+    };
+
+    loadItems();
+  }, []);
 
   return (
     <>
@@ -25,11 +36,16 @@ export default function Husky() {
         <SideBar />
         <div className="husky">
           <div className={styles.inventory}>
-            <InventoryItem />
-            <InventoryItem />
-            <InventoryItem />
-            <InventoryItem />
-            <InventoryItem />
+            {inventoryItems.map((item) => (
+              <InventoryItem
+                key={item.id}
+                price={item.price}
+                type={item.type}
+                name={item.name}
+                asset={item.asset}
+                equipped={item.equipped}
+              />
+            ))}
           </div>
           <MyHusky isHuskyPage={true}/>
         </div>

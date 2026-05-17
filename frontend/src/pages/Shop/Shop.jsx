@@ -8,11 +8,20 @@ import SideBar from "../../components/SideBar/SideBar";
 import MyHusky from "../../components/MyHusky";
 import ShopItem from "../../components/ShopItem/ShopItem"
 
-import shopService from "../../services/shopService"
+import { shopService } from "../../services/shopService"
 
 export default function Shop() {
   let name = "John Doe";
   const [shopItems, setShopItems] = useState([]);
+
+  useEffect(() => {
+      const loadItems = async () => {
+        const data = await shopService.getAll();
+        setShopItems(data);
+      };
+  
+      loadItems();
+    }, []);
 
   return (
     <>
@@ -27,10 +36,18 @@ export default function Shop() {
         </div>
         <div className="content">
             <div className={styles.shop}>
-                <ShopItem 
-                    price={5}
-                    bought={false}/>
-                <ShopItem />
+                {shopItems.map((item) => (
+                  <ShopItem
+                    key={item.id}
+                    id={item.id}
+                    price={item.price}
+                    type={item.type}
+                    name={item.name}
+                    asset={item.asset}
+                    bought={item.bought}
+                    equipped={item.equipped}
+                  />
+                ))}
                 <ShopItem />
                 <ShopItem />
                 <ShopItem />

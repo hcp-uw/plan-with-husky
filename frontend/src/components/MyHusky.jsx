@@ -36,17 +36,19 @@ function NameBar() {
 }
 
 function Balance() {
-  console.log("Balance rendered");
   const [balance, setBalance] = useState(0);
 
   useEffect(() => {
-    console.log("Balance effect running");
     const loadStats = async () => {
       const data = await huskyService.getStats();
       console.log("raw stats:", data);
       setBalance(data.balance);
     };
     loadStats();
+    window.addEventListener("balanceUpdated", loadStats);
+    return () => {
+      window.removeEventListener("balanceUpdated", loadStats);
+    };
   }, []);
 
   return (

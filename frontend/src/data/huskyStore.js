@@ -1,4 +1,4 @@
-const STORAGE_KEY = "store";
+const STORAGE_KEY = "husky";
 
 const defaultHusky = {
     name: "Dubs",
@@ -7,7 +7,7 @@ const defaultHusky = {
     energy: 100,
     xp: 0,
     level: 1,
-    balance: 10
+    balance: 100
 };
 
 function loadHusky() {

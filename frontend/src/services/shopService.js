@@ -7,5 +7,9 @@ export const shopService = {
 
     buyItem: async (id) => {
         return shopDB.buyItem(id);
+    },
+
+    getInventory: async () => {
+        return shopDB.getInventory();
     }
 }

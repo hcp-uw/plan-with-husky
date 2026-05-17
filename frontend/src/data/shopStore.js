@@ -1,8 +1,11 @@
-const STORAGE_KEY = "store";
+import carpet from "../assets/carpet.jpg"
+import placeholder from "../assets/placeholder.png"
+
+const STORAGE_KEY = "shop";
 
 const savedItems = localStorage.getItem(STORAGE_KEY);
 
-let storeItems = savedItems
+let shopItems = savedItems
     ? JSON.parse(savedItems)
     : [
         {
@@ -10,16 +13,16 @@ let storeItems = savedItems
             price: 10,
             type: "floor",
             name: "dorm carpet",
-            asset: "placeholder",
-            bought: false,
-            equipped: false
+            asset: carpet,
+            bought: true,
+            equipped: true
         },
         {
             id: 2,
             price: 5,
             type: "hat",
             name: "santa hat",
-            asset: "placeholder",
+            asset: placeholder,
             bought: false,
             equipped: false
         }
@@ -28,37 +31,38 @@ let storeItems = savedItems
 let nextId = 3;
 
 function saveItems() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(storeItems))
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(shopItems))
 }
 
-export const storeDB = {
+export const shopDB = {
     getAll: () => {
-        return storeItems;
+        return shopItems;
     },
 
     getInventory: () => {
-        return storeItems.filter(storeItem => storeItem.bought);
+        return shopItems.filter(shopItem => shopItem.bought);
     },
 
     getEquipped: () => {
-        return storeItems.filter(storeItem => storeItem.equipped);
+        return shopItems.filter(shopItem => shopItem.equipped);
     },
 
     buyItem: (id) => {
-        storeItems = storeItems.map(storeItem =>
-            storeItem.id === id
-                ? { ...storeItem, bought: true }
-                : storeItem
+        shopItems = shopItems.map(shopItem =>
+            shopItem.id === id
+                ? { ...shopItem, bought: true }
+                : shopItem
         );
-        saveTasks();
+        saveItems();
+        console.log(id);
     },
 
     toggleEquip: (id) => {
-        storeItems = storeItems.map(storeItem =>
-            storeItem.id === id
-                ? { ...storeItem, equipped: !storeItem.equipped }
-                : storeItem
+        shopItems = shopItems.map(shopItem =>
+            shopItem.id === id
+                ? { ...shopItem, equipped: !shopItem.equipped }
+                : shopItem
         );
-        saveTasks();
+        saveItems();
     }
 }
