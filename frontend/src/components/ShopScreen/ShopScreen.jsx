@@ -13,6 +13,7 @@ export default function ShopScreen ({ id, onClose, price, onBuy }) {
         await shopService.buyItem(id);
         await huskyService.loseCoins(price);
         window.dispatchEvent(new CustomEvent("balanceUpdated"));
+        window.dispatchEvent(new CustomEvent("huskyAction", {detail: "cheer"}));
     }
 
     return (

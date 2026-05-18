@@ -72,6 +72,24 @@ const MyHusky = ({isHuskyPage}) => {
       setMood(data.mood);
       setHunger(data.hunger);
       setEnergy(data.energy);
+
+      const { mood, hunger, energy } = data;
+
+      if (mood === 0 && hunger === 0 && energy === 0 ) {
+        window.dispatchEvent(new CustomEvent("huskyState", {detail: "dead"}));
+      } else if (mood < 33 && energy < 33){
+        window.dispatchEvent(new CustomEvent("huskyState", {detail: "tired sad"}));
+      } else if (mood < 33) {
+        window.dispatchEvent(new CustomEvent("huskyState", {detail: "sad"}));
+      } else if (energy < 33) {
+        window.dispatchEvent(new CustomEvent("huskyState", {detail: "tired"}));
+      } else if (hunger < 33) {
+        window.dispatchEvent(new CustomEvent("huskyState", {detail: "hungry"}));
+      } else if (mood > 66) {
+        window.dispatchEvent(new CustomEvent("huskyState", {detail: "happy"}));
+      } else {
+        window.dispatchEvent(new CustomEvent("huskyState", {detail: "neutral"}));
+      }
     };
 
     loadStats();

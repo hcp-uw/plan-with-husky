@@ -8,16 +8,19 @@ import { huskyService } from "../../services/huskyService";
 async function playBtn() {
   await huskyService.addMood(20);
   window.dispatchEvent(new CustomEvent("huskyUpdated"));
+  window.dispatchEvent(new CustomEvent("huskyAction", {detail: "play"}));
 }
 
 async function feedBtn() {
   await huskyService.addHunger(20);
   window.dispatchEvent(new CustomEvent("huskyUpdated"));
+  window.dispatchEvent(new CustomEvent("huskyAction", {detail: "eat"}));
 }
 
 async function sleepBtn() {
   await huskyService.addEnergy(20);
   window.dispatchEvent(new CustomEvent("huskyUpdated"));
+  window.dispatchEvent(new CustomEvent("huskyAction", {detail: "sleep"}));
 }
 
 export default function HuskyRoom() {
