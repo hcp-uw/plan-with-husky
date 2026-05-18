@@ -44,7 +44,9 @@ export default function Home() {
         <div className="title">
           <h1>Welcome back, {name}!</h1>
         </div>
-        <SideBar />
+        <div className="menu">
+          <SideBar />
+        </div>
         <div className="husky">
           <MyHusky />
         </div>

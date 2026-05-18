@@ -33,7 +33,9 @@ export default function Husky() {
         <div className="title">
           <h1>Welcome back, {name}!</h1>
         </div>
-        <SideBar />
+        <div className="menu">
+          <SideBar />
+        </div>
         <div className="husky">
           <div className={styles.inventory}>
             {inventoryItems.map((item) => (
