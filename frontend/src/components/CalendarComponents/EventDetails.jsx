@@ -61,59 +61,84 @@ export default function ({ event, onClose, onSave, onDelete }) {
             <div className="screen-content" 
                 onClick={(e) => e.stopPropagation()}
             >
-                <button className="close-button" onClick={onClose}>X</button>
                 {isEditing ? (
                     <>
-                        <h2>Edit event</h2>
-                        <button onClick={() => setIsEditing(false)}>"pencil"</button>
-                        <p>Name:</p>
-                        <input
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                        <input 
-                            type="date" 
-                            value={date}
-                            onChange={(e) => setDate(e.target.value)}
-                        />
-                        <input 
-                            placeholder="Category"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)} 
-                        />
-                        <input 
-                            type="time"
-                            value={time}
-                            onChange={(e) => setTime(e.target.value)}
-                        />
-                        <input 
-                            type="time"
-                            value={endTime}
-                            onChange={(e) => setEndTime(e.target.value)}
-                        />
-                        <button className="save-button" onClick={handleSave}>
-                            Save changes
-                        </button>
+                        <div className="modalHeader">
+                            <h2>Edit event</h2>
+                            <button className="edit-button" onClick={() => setIsEditing(false)}>✎</button>
+                            <button className="close-button" onClick={onClose}>X</button>
+                        </div>
+                        <div className="event-information">
+                            <div className="formRow">
+                                <input
+                                    value={name}
+                                    placeHolder={event.name}
+                                    onChange={(e) => setName(e.target.value)}
+                                />
+                                <input 
+                                    type="date" 
+                                    value={date}
+                                    onChange={(e) => setDate(e.target.value)}
+                                />
+                            </div>
+                            <div className="formRow">
+                                <input 
+                                    placeholder={"Category"}
+                                    value={category}
+                                    onChange={(e) => setCategory(e.target.value)} 
+                                />
+                                <input 
+                                    type="time"
+                                    value={time}
+                                    onChange={(e) => setTime(e.target.value)}
+                                />
+                            </div>    
+                            <div className="formRow">
+                                <input 
+                                    type="time"
+                                    value={endTime}
+                                    onChange={(e) => setEndTime(e.target.value)}
+                                />
+                            </div>
+                            <button className="save-button" onClick={handleSave}>
+                                Save changes
+                            </button>
+                        </div>     
                     </>
                 ) : (
                     <>
-                        <h2>View event</h2>
-                        <button onClick={() => setIsEditing(true)}>"pencil"</button>
-                        <button onClick={() => onDelete(event.id)}> Delete </button>
-                        <p>{event.name}</p>
-                        <p>{event.dateTime.getDate()}</p>
-                        <p>
-                            {event.dateTime.toLocaleTimeString([], {
-                                hour:"numeric",
-                                minute:"2-digit"
-                            })}
-                        </p>
-                        <p>
-                            {event.endDateTime.toLocaleTimeString([], {
-                                hour:"numeric",
-                                minute:"2-digit"
-                            })}
-                        </p>
+                        <div className="modalHeader">
+                            <h2>View event</h2>
+                            <button className="edit-button" onClick={() => setIsEditing(true)}>✎</button>
+                            <button className="delete-button" onClick={() => onDelete(event.id)}> Delete </button>
+                            <button className="close-button" onClick={onClose}>X</button>
+                        </div>  
+                        <div className="eventView">
+                            <div className="eventName">{event.name}</div>
+                            <div className="eventRow">
+                                <span>Date</span>
+                                <span>{event.dateTime.toDateString()}</span>
+                            </div>
+
+                            <div className="eventRow">
+                                <span>Start</span>
+                                <span>
+                                    {event.dateTime.toLocaleTimeString([], {
+                                        hour: "numeric",
+                                        minute: "2-digit"
+                                    })}
+                                </span>
+                            </div>
+                            <div className="eventRow">
+                                <span>End</span>
+                                <span>
+                                    {event.endDateTime.toLocaleTimeString([], {
+                                        hour: "numeric",
+                                        minute: "2-digit"
+                                    })}
+                                </span>
+                            </div>
+                        </div>
                     </>
                 )}
             </div>
