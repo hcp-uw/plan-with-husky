@@ -1,3 +1,38 @@
 .save-button {
     color: white;
+    background-color: #8C5FCC;
+}
+
+.edit-button {
+    color: white;
+    background-color: #8C5FCC;
+}
+
+.delete-button {
+    color: white;
+    background-color: #8C5FCC;
+}
+
+.eventView {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.eventName {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.eventRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.eventRow span:first-child {
+    opacity: 0.6;
 }

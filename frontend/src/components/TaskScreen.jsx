@@ -12,10 +12,12 @@ export default function TaskScreen ({ onAddTask, onClose }) {
         <>
             <div className="screen-overlay" onClick={onClose}>
                 <div className="screen-content" onClick={(e) => e.stopPropagation()}>
-                    <button className="close-button" onClick={onClose}>
-                        X
-                    </button>
-                    <h2>Task Screen</h2>
+                    <div className="modalHeader">
+                        <h2>Task Screen</h2>
+                        <button className="close-button" onClick={onClose}>
+                            X
+                        </button>
+                    </div>
                     <div className="task-information">
                         <input placeholder="Task name" 
                             value={desc}
@@ -33,8 +35,8 @@ export default function TaskScreen ({ onAddTask, onClose }) {
                             value={points}
                             onChange={(event) => setPoints(event.target.value)}
                         />
+                        <button onClick={() => onAddTask({ id: crypto.randomUUID(), desc, date, categ, points})} className="taskAddButton">Add task</button>
                     </div>
-                    <button onClick={() => onAddTask({ id: crypto.randomUUID(), desc, date, categ, points})} style={{color: "white"}}>Add task</button>
                 </div>
             </div>
         </>

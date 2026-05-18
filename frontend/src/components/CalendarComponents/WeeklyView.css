@@ -4,7 +4,33 @@
 
 .topRow {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerButtons {
+    display: flex;
+    align-items: center;
     gap: 8px;
+}
+
+.headerButtons button {
+    flex: 0 0 auto;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendarTitle {
+    margin: 0;
+}
+
+.headerDate {
+    margin-top: 0px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.9);
+    font-weight: 100;
 }
 
 .addEventButton {
@@ -54,4 +80,8 @@
 .view-button {
     background-color: #8C5FCC;
     color: rgba(255, 255, 255, 0.9);
+}
+
+.monthInArrows {
+    font-size: 25px;
 }
