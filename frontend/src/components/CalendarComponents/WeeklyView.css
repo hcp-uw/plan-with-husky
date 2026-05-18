@@ -1,0 +1,57 @@
+.headerDate {
+    font-weight: bold;
+}
+
+.topRow {
+    display: flex;
+    gap: 8px;
+}
+
+.addEventButton {
+    padding: 0px 18px;
+    background-color: #8C5FCC;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.week {
+    display: flex;
+}
+
+.day {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerDays {
+    padding-top: 10px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.headerDays p {
+    margin: 0;
+    font-weight: 100;
+}
+
+.timeSpacer {
+    width: 50px;
+}
+
+.scrollbarSpacer {
+    width: 20px;
+}
+
+.arrow-button {
+    background-color: #8C5FCC;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.view-button {
+    background-color: #8C5FCC;
+    color: rgba(255, 255, 255, 0.9);
+}

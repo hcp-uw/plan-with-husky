@@ -10,8 +10,8 @@ export default function TaskScreen ({ onAddTask, onClose }) {
 
     return (
         <>
-            <div className="screen-overlay">
-                <div className="screen-content">
+            <div className="screen-overlay" onClick={onClose}>
+                <div className="screen-content" onClick={(e) => e.stopPropagation()}>
                     <button className="close-button" onClick={onClose}>
                         X
                     </button>
@@ -34,7 +34,7 @@ export default function TaskScreen ({ onAddTask, onClose }) {
                             onChange={(event) => setPoints(event.target.value)}
                         />
                     </div>
-                    <button onClick={() => onAddTask({ desc, date, categ, points})} style={{color: "white"}}>Add task</button>
+                    <button onClick={() => onAddTask({ id: crypto.randomUUID(), desc, date, categ, points})} style={{color: "white"}}>Add task</button>
                 </div>
             </div>
         </>

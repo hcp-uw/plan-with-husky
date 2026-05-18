@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "axios": "^1.16.0",
+    "date-fns": "^4.1.0",
     "react-router-dom": "^7.13.1"
   }
 }
