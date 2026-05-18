@@ -1,0 +1,29 @@
+.screenOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    border-radius: 10px;
+}
+
+.screenContent {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.coin {
+    width: 25px;
+}
+
+.yesButton {
+    background: #8C5FCC;
+    color: white;
+}
+
+.noButton {
+    background: #E4D8FB
+}
