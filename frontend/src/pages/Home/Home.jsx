@@ -9,6 +9,7 @@ import TaskScreen from "../../components/TaskScreen";
 import Task from "../../components/Task"
 
 import { taskService } from "../../services/taskService";
+import { huskyService } from "../../services/huskyService";
 // OH MY GODDDDDD BRO
 
 export default function Home() {
@@ -33,8 +34,14 @@ export default function Home() {
     setTasks(updated);
   };
 
-  function deleteTask(id) {
-    setTasks(tasks => tasks.filter(task => task.id !== id));
+  async function deleteTask(id) {
+    const task = tasks.find(t => t.id === id);
+    huskyService.addMood(task.points);
+    huskyService.addCoins(task.points);
+    await taskService.removeTask(id);
+    const updated = await taskService.getTasks();
+    setTasks(updated);
+    window.dispatchEvent(new CustomEvent("huskyUpdated"));
   }
 
   return (
