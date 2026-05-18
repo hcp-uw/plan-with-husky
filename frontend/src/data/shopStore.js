@@ -50,7 +50,7 @@ export const shopDB = {
     buyItem: (id) => {
         shopItems = shopItems.map(shopItem =>
             shopItem.id === id
-                ? { ...shopItem, bought: true }
+                ? { ...shopItem, bought: !shopItem.bought }
                 : shopItem
         );
         saveItems();
