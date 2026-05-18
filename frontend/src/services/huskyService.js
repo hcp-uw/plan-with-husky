@@ -1,27 +1,27 @@
 import { huskyDB } from "../data/huskyStore";
 
 export const huskyService = {
-    getStats: async () => {
-        return huskyDB.getStats();
+    getStats: () => huskyDB.getStats(),
+
+    addXP: (amount) => huskyDB.addXP(amount),
+
+    addMood: (amount) => huskyDB.addMood(amount),
+
+    addHunger: (amount) => huskyDB.addHunger(amount),
+
+    addEnergy: (amount) => huskyDB.addEnergy(amount),
+
+    addCoins: (amount) => huskyDB.addCoins(amount),
+
+    loseCoins: async (amount) => {
+        const stats = await huskyDB.getStats();
+
+        if (amount <= stats.balance) {
+            return huskyDB.loseCoins(amount);
+        }
+
+        return false;
     },
 
-    addXP: async (amount) => {
-        return huskyDB.addXP(amount);
-    },
-
-    addMood: async (amount) => {
-        return huskyDB.addMood(amount);
-    },
-
-    addHunger: async (amount) => {
-        return huskyDB.addHunger(amount);
-    },
-
-    addEnergy: async (amount) => {
-        return huskyDB.addEnergy(amount);
-    },
-
-    decay: async () => {
-        return huskyDB.decay();
-    }
+    decay: () => huskyDB.decay(),
 }

@@ -1,15 +1,26 @@
-const STORAGE_KEY = 'store';
+const STORAGE_KEY = "husky";
 
-const storeStatus = localStorage.getItem(STORAGE_KEY);
-
-let husky = storeStatus ? JSON.parse(storeStatus) : [{
+const defaultHusky = {
     name: "Dubs",
     mood: 100,
     hunger: 100,
     energy: 100,
     xp: 0,
-    level: 1
-}];
+    level: 1,
+    balance: 100
+};
+
+function loadHusky() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    const parsed = stored ? JSON.parse(stored) : {};
+
+    return {
+        ...defaultHusky,
+        ...parsed
+    };
+}
+
+let husky = loadHusky();
 
 function saveStatus() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(husky))
@@ -42,6 +53,16 @@ export const huskyDB = {
 
     addEnergy: (amount) => {
         husky.energy = Math.min(husky.energy + amount, 100);
+        saveStatus();
+    },
+
+    addCoins: (amount) => {
+        husky.balance += amount;
+        saveStatus();
+    },
+
+    loseCoins: (amount) => {
+        husky.balance -= amount;
         saveStatus();
     },
 
