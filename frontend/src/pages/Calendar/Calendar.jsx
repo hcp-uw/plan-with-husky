@@ -87,7 +87,9 @@ export default function Calendar () {
             <div className="title">
                 <h1>Welcome back, John Doe!</h1> {/*temporarily changed this to just be john doe, will figure out const transferring later.*/}
             </div>
-            <SideBar />
+            <div className="menu">
+                <SideBar />
+            </div>
             <div className="husky">
                 <MyHusky />
             </div>

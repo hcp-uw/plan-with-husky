@@ -57,7 +57,7 @@ export const huskyDB = {
     },
 
     addCoins: (amount) => {
-        husky.balance += amount;
+        husky.balance = Math.min(husky.balance + amount, 10000);
         saveStatus();
     },
 

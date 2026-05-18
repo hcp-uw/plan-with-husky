@@ -7,5 +7,9 @@ export const taskService = {
 
     createTask: async (task) => {
         return taskDB.create(task);
+    },
+
+    removeTask: async (task) => {
+        return taskDB.remove(task);
     }
 };
