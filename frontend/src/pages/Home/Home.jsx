@@ -42,6 +42,8 @@ export default function Home() {
     const updated = await taskService.getTasks();
     setTasks(updated);
     window.dispatchEvent(new CustomEvent("huskyUpdated"));
+    window.dispatchEvent(new CustomEvent("balanceUpdated"));
+    window.dispatchEvent(new CustomEvent("huskyAction", {detail: "cheer"}));
   }
 
   return (
