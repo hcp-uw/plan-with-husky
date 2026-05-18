@@ -14,14 +14,17 @@ export default function EventAdder ({ onClose, onSave }) {
         const curr = new Date();
         const safeName = name.trim() || "(No name)";
 
-        const safeDate = date || curr.toISOString().split("T")[0];
+        const safeDate = date || new Date().toLocaleDateString("en-CA");
         const safeTime = time || curr.toTimeString().slice(0, 5);
 
 
-        const dateTime = new Date(`${safeDate}T${safeTime}`);
+        const [y, m, d] = safeDate.split("-");
+        const [h, min] = safeTime.split(":");
+
+        const dateTime = new Date(y, m - 1, d, h, min);
 
         const endDateTime = endTime
-        ? new Date(`${safeDate}T${endTime}`)
+        ? new Date(y, m - 1, d, ...endTime.split(":"), 0)
         : new Date(dateTime.getTime() + 30 * 60000);
 
         if (endDateTime < dateTime) {
@@ -32,6 +35,7 @@ export default function EventAdder ({ onClose, onSave }) {
         const duration = differenceInMinutes(endDateTime, dateTime);
         
         const event = {
+            id: crypto.randomUUID(),
             name: safeName,
             dateTime,
             endDateTime,

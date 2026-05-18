@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { startOfWeek, addDays, format, isSameDay } from "date-fns";
 
 import "./Calendar.css";
 import "../../pages/Home/Home.css";
@@ -11,20 +12,23 @@ import "../../components/CalendarComponents/WeeklyView.css";
 import WeeklyViewHeader from "../../components/CalendarComponents/WeeklyViewHeader";
 import EventAdder from "../../components/CalendarComponents/EventAdder";
 import EventDetails from "../../components/CalendarComponents/EventDetails";
+import WeekView from "../../components/CalendarComponents/WeekView";
+import MonthView from "../../components/CalendarComponents/MonthView";
 
 export default function Calendar () {
     const today = new Date();
-    const days = [0, 1, 2, 3, 4, 5, 6];
-    const hours = []
-    const LOCALE = "en-US";
-
-    for (let i = 0; i < 24; i++) {
-        hours.push(i );
-    }
+    const [currentWeek, setCurrentWeek] = useState(new Date());
+    const [currentDate, setCurrentDate] = useState(new Date());
+    const weekStart = startOfWeek(currentWeek);
+    const days = Array.from({ length: 7 }, (_, i) =>
+        addDays(weekStart, i)
+    );
+    const hours = Array.from({ length: 24 }, (_, i) => i);
 
     const [events, setEvents] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
+    const [view, setView] = useState("week");
 
     function addEvent(newEvent) {
         setEvents([...events, newEvent]);
@@ -34,22 +38,47 @@ export default function Calendar () {
         setShowPopup(true);
     }
 
-    function formatHour(hour) {
-        if (hour === 0) return "";
-        if (hour < 12 ) return `${hour} AM`;
-        if (hour === 12) return "12 PM";
-        
-        return `${hour - 12} PM`;
-    }
-
     function handleEditEvent(updatedEvent) {
         setEvents(events.map(event =>
-            event == selectedEvent
+            event.id == selectedEvent.id
                 ? updatedEvent
                 : event
         ))
         
         setSelectedEvent(updatedEvent);
+    }
+
+    function handlePrevWeek() {
+        setCurrentWeek(
+            new Date(
+                currentWeek.getTime() - 7 * 24 * 60 * 60 * 1000
+            )
+        );
+    }
+
+    function handleNextWeek() {
+        setCurrentWeek(
+            new Date(
+                currentWeek.getTime() + 7 * 24 * 60 * 60 * 1000
+            )
+        );
+    }
+
+    function handlePrevMonth() {
+        setCurrentDate(
+            new Date(currentDate.setMonth(currentDate.getMonth() - 1))
+        );
+    }
+
+    function handleNextMonth() {
+        setCurrentDate(
+            new Date(currentDate.setMonth(currentDate.getMonth() + 1))
+        );
+    }
+
+    function handleDeleteEvent(id) {
+        setEvents(events.filter(event => event.id !== id));
+        setSelectedEvent(null);
     }
 
     return (
@@ -64,7 +93,18 @@ export default function Calendar () {
             </div>
             <div className="content">
                 <div className="calendar-wrapper">
-                    <WeeklyViewHeader onAddClick={openPopup}/>
+                    <WeeklyViewHeader 
+                        onAddClick={openPopup}
+                        currentWeek={currentWeek}
+                        currentDate={currentDate}
+                        onPrevWeek={handlePrevWeek}
+                        onNextWeek={handleNextWeek}
+                        onPrevMonth={handlePrevMonth}
+                        onNextMonth={handleNextMonth}
+                        days={days}
+                        view={view}
+                        setView={setView}
+                    />
                     {showPopup && (
                         <EventAdder 
                             onClose={() => setShowPopup(false)}
@@ -76,59 +116,23 @@ export default function Calendar () {
                             event={selectedEvent}
                             onClose={() => setSelectedEvent(null)}
                             onSave={handleEditEvent}
+                            onDelete={handleDeleteEvent}
                         />
                     )}
-                    <div className="calendar">
-                        {hours.map((hour) => (
-                            <div className="row" key={hour}>
-                                <div className="time">{formatHour(hour)}</div>
-                                    {days.map((day) => (
-                                        <div className="cell" key={day} data-hour={hour} data-day={day}>
-                                            {events
-                                                .filter(e => 
-                                                    e.dateTime.getHours() === hour &&
-                                                    e.dateTime.getDay() === day
-                                                )
-                                                .map((event, i) => {
-                                                    const minuteOffset = 
-                                                        (event.dateTime.getMinutes() / 60) * 40;
-                                                    const visualDuration =
-                                                        Math.max(event.duration, 15);
-                                                    const eventHeight = 
-                                                        (visualDuration / 60) * 40;
-                                                    
-                                                    return (
-                                                        <div 
-                                                            key={i} 
-                                                            className="event-item"
-                                                            onClick={() => setSelectedEvent(event)}
-                                                            style={{
-                                                                position: "absolute",
-                                                                top: `${minuteOffset}px`,
-                                                                height: `${eventHeight}px`
-                                                            }}
-                                                        >
-                                                            <p className="event-name">{event.name}</p>
-                                                            <p className="event-time">
-                                                                {event.dateTime.toLocaleTimeString(LOCALE, {
-                                                                    hour: "numeric",
-                                                                    minute: "2-digit"
-                                                                })}{" "}
-                                                                -{" "} 
-                                                                {event.endDateTime.toLocaleTimeString(LOCALE, {
-                                                                    hour: "numeric",
-                                                                    minute: "2-digit"
-                                                                })}
-                                                            </p>
-                                                        </div>
-                                                    );
-                                                }) 
-                                            }
-                                        </div>
-                                    ))}
-                            </div>
-                        ))}
-                    </div>
+                    {view === "week" ? (
+                        <WeekView 
+                            events={events}
+                            days={days}
+                            hours={hours}
+                            setSelectedEvent={setSelectedEvent}
+                        />
+                    ) : (
+                        <MonthView 
+                            currentDate={currentDate}
+                            events={events} 
+                            setSelectedEvent={setSelectedEvent}
+                        />
+                    )} 
                 </div>
             </div>
         </div>

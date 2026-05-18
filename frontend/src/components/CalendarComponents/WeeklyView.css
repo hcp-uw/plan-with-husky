@@ -33,10 +33,25 @@
     font-weight: bold;
 }
 
+.headerDays p {
+    margin: 0;
+    font-weight: 100;
+}
+
 .timeSpacer {
     width: 50px;
 }
 
 .scrollbarSpacer {
     width: 20px;
+}
+
+.arrow-button {
+    background-color: #8C5FCC;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.view-button {
+    background-color: #8C5FCC;
+    color: rgba(255, 255, 255, 0.9);
 }

@@ -1,8 +1,6 @@
-import { useState } from "react";
-
 import "./WeeklyView.css";
 
-export default function WeeklyViewHeader({ onAddClick }) {
+export default function WeeklyViewHeader({ onAddClick, currentWeek, currentDate, onPrevWeek, onNextWeek, onPrevMonth, onNextMonth, days, view, setView }) {
     const today = new Date();
     const weekday = today.toLocaleDateString("en-US", {
         weekday: "long",
@@ -13,17 +11,45 @@ export default function WeeklyViewHeader({ onAddClick }) {
             <div className="topRow"> 
                 <p className="headerDate">Today's date: {today.toLocaleDateString()}, {weekday}</p>
                 <button className="addEventButton" onClick={onAddClick}>+ New Event</button>
+                <button onClick={view === "week" ? onPrevWeek : onPrevMonth} className="arrow-button">
+                    ←
+                </button>
+                <p>
+                    {view === "week" 
+                        ? currentWeek.toLocaleDateString([], {
+                            month: "long",
+                            year: "numeric"
+                        })
+                        : currentDate.toLocaleDateString([], {
+                            month: "long",
+                            year: "numeric"
+                        })
+                    
+                    }
+                    
+                </p>
+                <button onClick={view === "week" ? onNextWeek : onNextMonth} className="arrow-button">
+                    →
+                </button>
+                <button onClick={() => setView(view === "week" ? "month" : "week")} className="view-button">
+                    {view === "week" ? "Monthly view" : "Weekly view"}
+                </button>
             </div>
             <div className="week">
                 <div className="timeSpacer" />
 
-                <div className="headerDays">Sun</div>
-                <div className="headerDays">Mon</div>
-                <div className="headerDays">Tue</div>
-                <div className="headerDays">Wed</div>
-                <div className="headerDays">Thu</div>
-                <div className="headerDays">Fri</div>
-                <div className="headerDays">Sat</div>
+                {view === "week" && (
+                    days.map((day) => (
+                    <div key={day.toISOString()} className="headerDays">
+                        <p>
+                            {day.toLocaleDateString("en-US", {
+                                weekday: "short"
+                            })}
+                            {" "}
+                            {day.getDate()}
+                        </p>
+                    </div>
+                )))}
 
                 <div className="scrollbarSpacer" />
             </div>

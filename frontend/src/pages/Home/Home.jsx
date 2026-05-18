@@ -17,6 +17,10 @@ export default function Home() {
     setTasks(tasks => [...tasks, newTask]);
   };
 
+  function deleteTask(id) {
+    setTasks(tasks => tasks.filter(task => task.id !== id));
+  }
+
   return (
     <>
       <div className="parent">
@@ -30,13 +34,15 @@ export default function Home() {
         </div>
         <div className="content">
           <div className="tasks">
-            {tasks.map((task, index) => (
+            {tasks.map((task) => (
               <Task
-                key={index}
+                id={task.id}
+                key={task.id}
                 desc={task.desc}
                 date={task.date}
                 categ={task.categ}
                 points={task.points}
+                onComplete={deleteTask}
               />
             ))}
           </div>

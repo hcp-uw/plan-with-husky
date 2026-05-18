@@ -14,8 +14,7 @@ export default function Task(props) {
         <div className={styles.check}>
           <input
             type="checkbox"
-            name="option_name"
-            value="option_value"
+            onChange={() => props.onComplete(props.id)}
           ></input>
         </div>
         <div>{desc}</div>
@@ -25,5 +24,5 @@ export default function Task(props) {
       </div>
     </>
   );
-};
+}
 

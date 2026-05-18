@@ -3,10 +3,12 @@ import { differenceInMinutes } from 'date-fns';
 
 import "./EventDetails.css";
 
-export default function ({ event, onClose, onSave }) {
+export default function ({ event, onClose, onSave, onDelete }) {
     const [name, setName] = useState("");
     const [date, setDate] = useState(
-        event.dateTime.toISOString().split("T")[0]
+        event.dateTime.getFullYear() + "-" +
+        String(event.dateTime.getMonth() + 1).padStart(2, "0") + "-" +
+        String(event.dateTime.getDate()).padStart(2, "0")
     );
     const [category, setCategory] = useState(event.category);
     const [time, setTime] = useState(
@@ -19,7 +21,8 @@ export default function ({ event, onClose, onSave }) {
     const [isEditing, setIsEditing] = useState(false);
 
     function handleSave() {
-        const safeName = name.trim() || event.name;
+        const 
+        safeName = name.trim() || event.name;
 
         const updatedDateTime = new Date(`${date}T${time}`);
         const updatedEndDateTime = endTime
@@ -31,7 +34,7 @@ export default function ({ event, onClose, onSave }) {
             return;
         }
 
-        if (updatedEndDateTime < updatedDateTime) {
+        if (updatedEndDateTime.getTime() < updatedDateTime.getTime()) {
             alert("End time should not be before start time.");
             return;
         }
@@ -96,6 +99,7 @@ export default function ({ event, onClose, onSave }) {
                     <>
                         <h2>View event</h2>
                         <button onClick={() => setIsEditing(true)}>"pencil"</button>
+                        <button onClick={() => onDelete(event.id)}> Delete </button>
                         <p>{event.name}</p>
                         <p>{event.dateTime.getDate()}</p>
                         <p>
@@ -112,30 +116,6 @@ export default function ({ event, onClose, onSave }) {
                         </p>
                     </>
                 )}
-                {
-                    /*
-                <div>
-                    
-                </div>
-                <p>{event.dateTime.getDate()}</p>
-                <p>
-                    {event.dateTime.toLocaleTimeString([], {
-                        hour:"numeric",
-                        minute:"2-digit"
-                    })}
-                </p>
-                <p>
-                    {event.endDateTime.toLocaleTimeString([], {
-                        hour:"numeric",
-                        minute:"2-digit"
-                    })}
-                </p>
-
-                <button className="save-button" onClick={handleSave}>
-                    Save changes
-                </button>
-                
-                */}
             </div>
         </div>
     );

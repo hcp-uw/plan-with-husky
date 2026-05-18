@@ -34,7 +34,7 @@ export default function TaskScreen ({ onAddTask, onClose }) {
                             onChange={(event) => setPoints(event.target.value)}
                         />
                     </div>
-                    <button onClick={() => onAddTask({ desc, date, categ, points})} style={{color: "white"}}>Add task</button>
+                    <button onClick={() => onAddTask({ id: crypto.randomUUID(), desc, date, categ, points})} style={{color: "white"}}>Add task</button>
                 </div>
             </div>
         </>
