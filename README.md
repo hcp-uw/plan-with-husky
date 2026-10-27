@@ -19,9 +19,8 @@ A gamified planner complete with a to-do list, calendar, and husky interaction s
 - Vite
 
 ### Backend
-- Node.js
-- Express
-- CORS
+- Java
+- Spring Boot
 
 ## Running the App
 
